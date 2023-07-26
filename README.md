@@ -1,6 +1,6 @@
 # WB Health - Sistema Hospitalar em Java (Equipe-08)
 
-WB Health é um  projeto desenvolvido em Java pelos colaboradores Kirmct de Abreu, Rafael Macedo, William Braz e Yuri Queiroz. O sistema tem o objetivo de gerenciar um hospital, permitindo realizar operações de CRUD (Create, Read, Update, Delete) para médicos, pacientes, funcionários e atendimentos. Além disso, o sistema também possui uma funcionalidade para visualizar os gastos e ganhos do hospital. O projeto foi um desafio proposto como teste do conhecimento obtido ao final do módulo-01 de Java do programa Vem Ser, da empresa DBC Company.
+WB Health é um  projeto desenvolvido em Java pelos colaboradores Kirmct de Abreu, Nicoly Lana, Renan Bilhan e Yuri Queiroz. O sistema tem o objetivo de gerenciar um hospital, permitindo realizar operações de CRUD (Create, Read, Update, Delete) para médicos, pacientes, funcionários e atendimentos. Além disso, o sistema também possui uma funcionalidade para visualizar os gastos e ganhos do hospital. O projeto foi um desafio proposto como teste do conhecimento obtido ao final do módulo-01 de Java do programa Vem Ser, da empresa DBC Company.
 ## Funcionalidades
 
 O sistema WB Health oferece as seguintes funcionalidades:
@@ -48,7 +48,7 @@ Para executar o projeto WB Health, siga os passos abaixo:
 
 ## Contribuição
 
-O projeto WB Health é um trabalho em equipe desenvolvido por Kirmct de Abreu, Rafael Macedo, William Braz e Yuri Queiroz (Equipe-08).
+O projeto WB Health é um trabalho em equipe desenvolvido por Kirmct de Abreu, Nicoly Lana, Renan Bilhan e Yuri Queiroz (Equipe-08).
 
 ## Licença
 
@@ -58,8 +58,8 @@ Este projeto é distribuído sob a licença [MIT](https://opensource.org/license
 
 Se tiver alguma dúvida ou sugestão sobre o projeto WB Health, você pode entrar em contato conosco:
 
-- Kirmct de Abreu: kirmctneto@gmail.com
-- Rafael Macedo: macedorafael2002@gmail.com
-- William Braz: williambraz65@gmail.com
-- Yuri Queiroz: queirozy86@gmail.com
+- Kirmct de Abreu: kirmct.neto@dbccompany.com.br
+- Nicoly Lana: nicoly.carvalho@dbccompany.com.br
+- Renan Bilhan: renan.bilhan@dbccompany.com.br
+- Yuri Queiroz: yuri.queiroz@dbccompany.com.br
 
