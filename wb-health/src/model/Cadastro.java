@@ -11,14 +11,12 @@ public interface Cadastro <Key, T> {
 
     public List<T> listarTodos() throws BancoDeDadosException;
 
-    public void listarPeloId(Key id) throws BancoDeDadosException;
+    public T listarPeloId(Key id) throws BancoDeDadosException;
 
-    public void alterarPeloId(Key id, T entidadeAtualizada) throws BancoDeDadosException;
+    public boolean alterarPeloId(Key id, T entidadeAtualizada) throws BancoDeDadosException;
 
-    public void deletarPeloId(Key id) throws BancoDeDadosException;;
-    public void setarAtributos(T entidade, T entidadeAtualizada) throws BancoDeDadosException;
+    public boolean deletarPeloId(Key id) throws BancoDeDadosException;
 
-    public T buscarId(Key id) throws BancoDeDadosException;
 
     public Integer getProximoId(Connection connection, String nextSequence) throws SQLException;
 

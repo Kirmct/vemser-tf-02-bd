@@ -10,10 +10,17 @@ public class TesteDb {
 //        System.out.println("Inserir paciente: ");
 //        MenuPaciente.inserir(sc);
 
-        System.out.println("Listar pacientes: ");
-        MenuPaciente.listar();
+//        System.out.println("Listar pacientes: ");
+//        MenuPaciente.listar();
 
+//        System.out.println("Listar por id: ");
+//        MenuPaciente.listarPeloID(sc);
 
+//        System.out.println("Editar paciente por Id: ");
+//        MenuPaciente.alterarPeloId(sc);
+
+        System.out.println("Remover pessoa por id: ");
+        MenuPaciente.deletarPeloId(sc);
 
         sc.close();
     }

@@ -4,6 +4,7 @@ import model.Hospital;
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;
 import repository.PacienteRepository;
+import util.CoresMenu;
 
 import java.sql.Connection;
 import java.util.List;
@@ -45,19 +46,37 @@ public class PacienteResource {
             e.printStackTrace();
         }
     }
-//
-//    public void listarPeloId(Hospital hospital, Integer id) {
-//        pacienteRepository.listarPeloId(hospital, id);
-//    }
-//
-//    public void alterarPeloId(Hospital hospital, Integer id, Paciente pacienteAtualizado){
-//        pacienteRepository.alterarPeloId(hospital, id, pacienteAtualizado);
-//    }
-//
-//    public void deletarPeloId(Hospital hospital, Integer id){
-//        pacienteRepository.deletarPeloId(hospital, id);
-//    }
-//
+
+    public void listarPeloId(Integer id) throws BancoDeDadosException {
+        Paciente paciente = pacienteRepository.listarPeloId(id);
+        System.out.println(paciente);
+    }
+
+    public void alterarPeloId(Integer id, Paciente pacienteAtualizado) throws BancoDeDadosException {
+        try {
+            boolean consegueEditar = pacienteRepository.alterarPeloId(id, pacienteAtualizado);
+            if (consegueEditar){
+
+            }
+        }catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deletarPeloId(Integer id){
+        try {
+           boolean removeu =  pacienteRepository.deletarPeloId(id);
+           if (removeu){
+               System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
+           }
+
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 //    public Paciente buscarId(Hospital hospital, Integer id){
 //        return pacienteRepository.buscarId(hospital.getPacientes(), id);
 //    }

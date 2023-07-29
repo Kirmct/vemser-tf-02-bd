@@ -2,6 +2,7 @@ package util;
 
 import model.Hospital;
 import model.Paciente;
+import model.exceptions.BancoDeDadosException;
 import resources.PacienteResource;
 
 import java.util.InputMismatchException;
@@ -37,6 +38,7 @@ public class MenuPaciente {
             paciente = new Paciente("kirmct", "55555555", "21-11-1998", cpf, 2000.00, 1);
 
             boolean cpfExists = pacienteResource.buscarCpf(paciente);
+
             if (cpfExists){
                 throw new RuntimeException("CPF já existe em tabela!");
             }
@@ -46,56 +48,74 @@ public class MenuPaciente {
             System.out.println("Ocorreu ao inserir: " + e.getMessage());
         }
     }
-//    public static void listarPeloID(Hospital hospital, Scanner sc) {
-//        try {
-//            System.out.println("\n---------- Entre com os dados ----------");
-//            System.out.print("ID do paciente que deseja buscar: ");
-//            Integer id = Integer.parseInt(sc.nextLine());
-//            pacienteResource.listarPeloId(hospital, id);
-//            System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
-//        }catch (InputMismatchException e){
-//            System.err.println("Input Inválido! ");
-//        }
-//        catch (RuntimeException e) {
-//            System.err.println("Ocorreu um erro! " + e.getMessage());
-//        }
-//    }
-//
-//    public static void alterarPeloId(Hospital hospital, Scanner sc){
-//        try {
-//            System.out.println("\n---------- Entre com os dados ----------");
-//            System.out.print("ID do paciente que deseja alterar: ");
-//            Integer id = Integer.parseInt(sc.nextLine());
-//            System.out.print("Novo nome do paciente: ");
-//            String nome = sc.nextLine();
-//            System.out.print("CPF do paciente: ");
-//            String cpf = sc.nextLine();
-//            System.out.print("Novo CEP do paciente: ");
-//            String cep = sc.nextLine();
-//
-//            pacienteResource.alterarPeloId(hospital, id, new Paciente(nome, cep, cpf));
-//            System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
-//        }catch (InputMismatchException e){
-//            System.err.println("Input Inválido! ");
-//        }
-//        catch (RuntimeException e) {
-//            System.err.println("Ocorreu um erro! " + e.getMessage());
-//        }
-//    }
-//
-//    public static void deletarPeloId(Hospital hospital, Scanner sc) {
-//        try {
-//            System.out.println("\n---------- Entre com os dados ----------");
-//            System.out.print("ID do paciente que deseja deletar: ");
-//            Integer id = Integer.parseInt(sc.nextLine());
-//            pacienteResource.deletarPeloId(hospital, id);
-//            System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
-//        }catch (InputMismatchException e){
-//            System.err.println("Input Inválido! ");
-//        }
-//        catch (RuntimeException e) {
-//            System.err.println("Ocorreu um erro! " + e.getMessage());
-//        }
-//    }
+    public static void listarPeloID(Scanner sc) {
+        try {
+            System.out.println("\n---------- Entre com os dados ----------");
+            System.out.print("ID do paciente que deseja buscar: ");
+            Integer id = Integer.parseInt(sc.nextLine());
+            pacienteResource.listarPeloId(id);
+            System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
+        }catch (InputMismatchException e){
+            System.err.println("Input Inválido! ");
+        }
+        catch (RuntimeException e) {
+            System.err.println("Ocorreu um erro! " + e.getMessage());
+        } catch (BancoDeDadosException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void alterarPeloId(Scanner sc){
+        try {
+            System.out.println("\n---------- Entre com os dados ----------");
+            System.out.print("ID do paciente que deseja alterar: ");
+            Integer id = Integer.parseInt(sc.nextLine());
+
+            System.out.print("Novo nome do paciente: ");
+            String nome = sc.nextLine();
+
+            System.out.print("Novo CEP do paciente: ");
+            String cep = sc.nextLine();
+
+            System.out.print("Novo data nascimento do paciente(dd-MM-yyyy): ");
+            String dataNascimento = sc.nextLine();
+
+            System.out.print("CPF do paciente: ");
+            String cpf = sc.nextLine();
+
+            System.out.print("Novo salário: ");
+            Double salario = Double.parseDouble(sc.nextLine());
+
+
+            Paciente paciente;
+            paciente = new Paciente(nome, cep, dataNascimento, cpf, salario, 1);
+
+            pacienteResource.alterarPeloId(id, paciente);
+        }catch (InputMismatchException e){
+            System.err.println("Input Inválido! ");
+        }
+        catch (RuntimeException e) {
+            System.err.println("Ocorreu um erro! " + e.getMessage());
+            e.printStackTrace();
+        } catch (BancoDeDadosException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void deletarPeloId(Scanner sc) {
+        try {
+            System.out.println("\n---------- Entre com os dados ----------");
+            System.out.print("ID do paciente que deseja deletar: ");
+            Integer id = Integer.parseInt(sc.nextLine());
+
+            pacienteResource.deletarPeloId(id);
+
+        }catch (InputMismatchException e){
+            System.err.println("Input Inválido! ");
+        }
+        catch (RuntimeException e) {
+            System.err.println("Ocorreu um erro! " + e.getMessage());
+        }
+    }
 
 }

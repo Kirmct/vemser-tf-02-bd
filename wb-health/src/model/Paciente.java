@@ -5,6 +5,9 @@ public class Paciente extends Pessoa {
     private Integer idHospital;
     private Integer idPessoa;
 
+    public Paciente() {
+    }
+
     public Paciente(String nome, String cep, String dataNacimento,
                     String cpf, Double salarioMensal, Integer idHospital) {
         super(nome, cep, dataNacimento, cpf, salarioMensal);
