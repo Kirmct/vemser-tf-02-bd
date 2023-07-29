@@ -1,22 +1,21 @@
 package util;
 
-import model.Hospital;
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;
-import resources.PacienteResource;
+import service.PacienteService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuPaciente {
-    private static final PacienteResource pacienteResource = new PacienteResource();
+    private static final PacienteService pacienteService = new PacienteService();
 
     public static void listar(){
         try {
             System.out.println("\n---------- Lista de pacientes ----------");
-            pacienteResource.listarTodos();
+            pacienteService.listarTodos();
         }catch (RuntimeException e){
-//            System.out.println("Erro ao listar todos" + e.getMessage());
+            System.out.println("Erro ao listar todos" + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -25,25 +24,24 @@ public class MenuPaciente {
         try {
             Paciente paciente;
             System.out.println("\n---------- Entre com os dados ----------");
-//            System.out.print("Entre com o nome: ");
-//            String nome = sc.nextLine();
-//            System.out.print("Entre com o CEP: ");
-//            String cep = sc.nextLine();
-//            System.out.print("Entre com a data de nascimento(dd-mm-yyyy): ");
-//            String dataNascimento = sc.nextLine();
+            System.out.print("Entre com o nome: ");
+            String nome = sc.nextLine();
+            System.out.print("Entre com o CEP: ");
+            String cep = sc.nextLine();
+            System.out.print("Entre com a data de nascimento(dd-mm-yyyy): ");
+            String dataNascimento = sc.nextLine();
             System.out.print("Entre com o CPF: ");
             String cpf = sc.nextLine();
 
+            paciente = new Paciente(nome, cep, dataNascimento, cpf, 0.00, 1);
 
-            paciente = new Paciente("kirmct", "55555555", "21-11-1998", cpf, 2000.00, 1);
-
-            boolean cpfExists = pacienteResource.buscarCpf(paciente);
+            boolean cpfExists = pacienteService.buscarCpf(paciente);
 
             if (cpfExists){
                 throw new RuntimeException("CPF já existe em tabela!");
             }
-            pacienteResource.inserir(paciente);
-            System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
+            pacienteService.inserir(paciente);
+
         }catch (RuntimeException e){
             System.out.println("Ocorreu ao inserir: " + e.getMessage());
         }
@@ -53,7 +51,7 @@ public class MenuPaciente {
             System.out.println("\n---------- Entre com os dados ----------");
             System.out.print("ID do paciente que deseja buscar: ");
             Integer id = Integer.parseInt(sc.nextLine());
-            pacienteResource.listarPeloId(id);
+            pacienteService.listarPeloId(id);
             System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
         }catch (InputMismatchException e){
             System.err.println("Input Inválido! ");
@@ -90,7 +88,7 @@ public class MenuPaciente {
             Paciente paciente;
             paciente = new Paciente(nome, cep, dataNascimento, cpf, salario, 1);
 
-            pacienteResource.alterarPeloId(id, paciente);
+            pacienteService.alterarPeloId(id, paciente);
         }catch (InputMismatchException e){
             System.err.println("Input Inválido! ");
         }
@@ -108,7 +106,7 @@ public class MenuPaciente {
             System.out.print("ID do paciente que deseja deletar: ");
             Integer id = Integer.parseInt(sc.nextLine());
 
-            pacienteResource.deletarPeloId(id);
+            pacienteService.deletarPeloId(id);
 
         }catch (InputMismatchException e){
             System.err.println("Input Inválido! ");

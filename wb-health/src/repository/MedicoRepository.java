@@ -1,6 +1,6 @@
 //package repository;
 //
-//import model.Cadastro;
+//import repository.Cadastro;
 //import model.Hospital;
 //import model.Medico;
 //import model.exceptions.IdException;

@@ -1,4 +1,4 @@
-package model;
+package repository;
 
 import model.exceptions.BancoDeDadosException;
 
@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface Cadastro <Key, T> {
+public interface Repositorio<Key, T> {
     public void cadastrar(T entidade) throws BancoDeDadosException;
 
     public List<T> listarTodos() throws BancoDeDadosException;
@@ -16,7 +16,6 @@ public interface Cadastro <Key, T> {
     public boolean alterarPeloId(Key id, T entidadeAtualizada) throws BancoDeDadosException;
 
     public boolean deletarPeloId(Key id) throws BancoDeDadosException;
-
 
     public Integer getProximoId(Connection connection, String nextSequence) throws SQLException;
 

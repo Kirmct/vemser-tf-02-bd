@@ -1,15 +1,13 @@
-package resources;
+package service;
 
-import model.Hospital;
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;
 import repository.PacienteRepository;
 import util.CoresMenu;
 
-import java.sql.Connection;
 import java.util.List;
 
-public class PacienteResource {
+public class PacienteService {
     private final PacienteRepository pacienteRepository = new PacienteRepository();
 
     public void inserir(Paciente paciente) {
@@ -26,6 +24,7 @@ public class PacienteResource {
             }
             paciente.setCep(cep); // Atualiza o CEP no objeto Paciente com o valor formatado
             pacienteRepository.cadastrar(paciente);
+            System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
 
         }catch (BancoDeDadosException e){
             e.printStackTrace();

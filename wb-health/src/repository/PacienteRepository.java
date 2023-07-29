@@ -1,19 +1,15 @@
 package repository;
 
-import model.Cadastro;
-import model.Hospital;
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;
-import model.exceptions.IdException;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class PacienteRepository implements Cadastro<Integer, Paciente> {
+public class PacienteRepository implements Repositorio<Integer, Paciente> {
 
     @Override
     public void cadastrar(Paciente paciente) throws BancoDeDadosException{
