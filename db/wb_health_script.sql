@@ -15,7 +15,7 @@ CREATE TABLE Pessoa(
     cep CHAR(9) NOT NULL,
     data_nascimento DATE,
     cpf CHAR(11) UNIQUE NOT NULL,
-    salario_mensal DECIMAL(6,2) NULL,
+    salario_mensal DECIMAL(6,2),
      CONSTRAINT pk_Pessoa PRIMARY KEY (id_pessoa)
 );
 
@@ -26,23 +26,22 @@ INCREMENT BY 1
 NOCACHE NOCYCLE;
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Gertrudes', 99999-999, TO_DATE('11-02-1949','DD=MM=YYYY'), '33333333333', NULL);
+VALUES(seq_pessoa.nextval, 'Gertrudes', 99999-999, TO_DATE('11-02-1949','dd-MM-yyyy'), '33333333333', NULL);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Mauricio', 99998-999, TO_DATE('12-04-2022','DD=MM=YYYY'), '44444444444', 1000.3);
+VALUES(seq_pessoa.nextval, 'Mauricio', 99998-999, TO_DATE('12-04-2022','dd-MM-yyyy'), '44444444444', 1000.3);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Larissa', 99988-999, TO_DATE('22-11-1999','DD=MM=YYYY'), '88888888888', 3000);
+VALUES(seq_pessoa.nextval, 'Larissa', 99988-999, TO_DATE('22-11-1999','dd-MM-yyyy'), '88888888888', 3000);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Marcos', 99988-999, TO_DATE('22-11-1999','DD=MM=YYYY'), '77777777777', 3001);
+VALUES(seq_pessoa.nextval, 'Marcos', 99988-999, TO_DATE('22-11-1999','dd-MM-yyyy'), '77777777777', 3001);
 
 -- ////////////////////////////////// PACIENTE ////////////////////////////////// --
 CREATE TABLE Paciente(
 	id_paciente NUMBER(10) NOT NULL,
 	id_hospital NUMBER(10) NOT NULL,
 	id_pessoa NUMBER(10) NOT NULL,
-	eh_plano CHAR(1) NOT NULL,
 	 CONSTRAINT PK_PACIENTE PRIMARY KEY (id_paciente),
 	 CONSTRAINT FK_PACIENTE_HOSPITAL FOREIGN KEY (id_hospital) REFERENCES Hospital(id_hospital),
 	 CONSTRAINT FK_PACIENTE_PESSOA FOREIGN KEY (id_hospital) REFERENCES Pessoa(id_pessoa)
@@ -56,8 +55,8 @@ CREATE SEQUENCE SEQ_PACIENTE
  NOCYCLE;
 
 ---- INSERT PACIENTE ----
-INSERT INTO Paciente (id_paciente, id_hospital, id_pessoa, eh_plano)
-	VALUES (SEQ_PACIENTE.nextval, 1, 1, 'S');
+INSERT INTO Paciente (id_paciente, id_hospital, id_pessoa)
+	VALUES (SEQ_PACIENTE.nextval, 1, 1);
 	
 	
 -- ////////////////////////////////// FUNCIONÁRIO ////////////////////////////////// --
@@ -133,4 +132,5 @@ INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, da
 INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento)
 	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 2, TO_DATE('05-02-1973', 'dd-mm-yyyy'), 'dor de cotovelo', '2');
 
+SELECT * FROM PACIENTE;
 

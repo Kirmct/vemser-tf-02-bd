@@ -1,14 +1,24 @@
 package model;
 
-import java.util.List;
+import model.exceptions.BancoDeDadosException;
 
-public interface Cadastro <T> {
-    public void cadastrar(Hospital hospital, T entidade);
-    public void listarTodos(Hospital hospital);
-    public void listarPeloId(Hospital hospital, Integer id);
-    public void alterarPeloId(Hospital hospital, Integer id, T entidade);
-    public void deletarPeloId(Hospital hospital, Integer id);
-    public void setarAtributos(T entidade, T entidadeAtualizada);
-    public T buscarId(List<T> entidade, Integer id);
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public interface Cadastro <Key, T> {
+    public void cadastrar(T entidade) throws BancoDeDadosException;
+
+    public void listarTodos() throws BancoDeDadosException;
+
+    public void listarPeloId(Key id) throws BancoDeDadosException;
+
+    public void alterarPeloId(Key id, T entidadeAtualizada) throws BancoDeDadosException;
+
+    public void deletarPeloId(Key id) throws BancoDeDadosException;;
+    public void setarAtributos(T entidade, T entidadeAtualizada) throws BancoDeDadosException;
+
+    public T buscarId(Key id) throws BancoDeDadosException;
+
+//    public Integer getProximoId(Connection connection) throws SQLException;
 
 }
