@@ -4,11 +4,12 @@ import model.exceptions.BancoDeDadosException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface Cadastro <Key, T> {
     public void cadastrar(T entidade) throws BancoDeDadosException;
 
-    public void listarTodos() throws BancoDeDadosException;
+    public List<T> listarTodos() throws BancoDeDadosException;
 
     public void listarPeloId(Key id) throws BancoDeDadosException;
 
@@ -19,6 +20,6 @@ public interface Cadastro <Key, T> {
 
     public T buscarId(Key id) throws BancoDeDadosException;
 
-//    public Integer getProximoId(Connection connection) throws SQLException;
+    public Integer getProximoId(Connection connection, String nextSequence) throws SQLException;
 
 }

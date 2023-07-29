@@ -5,15 +5,27 @@ import model.Paciente;
 import model.exceptions.BancoDeDadosException;
 import repository.PacienteRepository;
 
+import java.sql.Connection;
+import java.util.List;
+
 public class PacienteResource {
-    private PacienteRepository pacienteRepository = new PacienteRepository();
+    private final PacienteRepository pacienteRepository = new PacienteRepository();
 
     public void inserir(Paciente paciente) {
         try {
-            if (paciente.getCpf().length() != 11) {
+            String cpf = paciente.getCpf().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos do CPF
+            if (cpf.length() != 11) {
                 throw new Exception("CPF Invalido!");
             }
+            paciente.setCpf(cpf);
+
+            String cep = paciente.getCep().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos do CEP
+            if (cep.length() != 8) {
+                throw new Exception("CEP inválido! Deve conter exatamente 8 dígitos numéricos.");
+            }
+            paciente.setCep(cep); // Atualiza o CEP no objeto Paciente com o valor formatado
             pacienteRepository.cadastrar(paciente);
+
         }catch (BancoDeDadosException e){
             e.printStackTrace();
         }catch (Exception e){
@@ -21,9 +33,18 @@ public class PacienteResource {
         }
     }
 
-//    public void listarTodos(Hospital hospital) {
-//        pacienteRepository.listarTodos(hospital);
-//    }
+    public boolean buscarCpf(Paciente paciente){
+        return pacienteRepository.buscarCpf(paciente);
+    }
+
+    public void listarTodos() {
+        try {
+            List<Paciente> list = pacienteRepository.listarTodos();
+            list.forEach(System.out::println);
+        }catch (BancoDeDadosException e){
+            e.printStackTrace();
+        }
+    }
 //
 //    public void listarPeloId(Hospital hospital, Integer id) {
 //        pacienteRepository.listarPeloId(hospital, id);

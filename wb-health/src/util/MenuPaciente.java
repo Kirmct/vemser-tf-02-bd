@@ -10,32 +10,36 @@ import java.util.Scanner;
 public class MenuPaciente {
     private static final PacienteResource pacienteResource = new PacienteResource();
 
-//    public static void listar(Hospital hospital){
-//        try {
-//            System.out.println("\n---------- Lista de pacientes ----------");
-//            pacienteResource.listarTodos(hospital);
-//        }catch (RuntimeException e){
+    public static void listar(){
+        try {
+            System.out.println("\n---------- Lista de pacientes ----------");
+            pacienteResource.listarTodos();
+        }catch (RuntimeException e){
 //            System.out.println("Erro ao listar todos" + e.getMessage());
-//        }
-//    }
+            e.printStackTrace();
+        }
+    }
 
     public static void inserir(Scanner sc){
         try {
             Paciente paciente;
             System.out.println("\n---------- Entre com os dados ----------");
-            System.out.print("Entre com o nome: ");
-            String nome = sc.nextLine();
-            System.out.print("Entre com o CEP: ");
-            String cep = sc.nextLine();
-            System.out.print("Entre com a data de nascimento(dd-mm-yyyy): ");
-            String dataNascimento = sc.nextLine();
+//            System.out.print("Entre com o nome: ");
+//            String nome = sc.nextLine();
+//            System.out.print("Entre com o CEP: ");
+//            String cep = sc.nextLine();
+//            System.out.print("Entre com a data de nascimento(dd-mm-yyyy): ");
+//            String dataNascimento = sc.nextLine();
             System.out.print("Entre com o CPF: ");
             String cpf = sc.nextLine();
-//            System.out.print("É plano: ");
-//            char ehPlano = sc.nextLine().charAt(0);
 
-            paciente = new Paciente(nome, cep, dataNascimento, cpf, 2000.00, 1);
 
+            paciente = new Paciente("kirmct", "55555555", "21-11-1998", cpf, 2000.00, 1);
+
+            boolean cpfExists = pacienteResource.buscarCpf(paciente);
+            if (cpfExists){
+                throw new RuntimeException("CPF já existe em tabela!");
+            }
             pacienteResource.inserir(paciente);
             System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
         }catch (RuntimeException e){

@@ -1,6 +1,6 @@
 -- ////////////////////////////////// HOSPITAL ////////////////////////////////// --
 CREATE TABLE Hospital (
-    id_hospital NUMBER(10) NOT NULL,
+    id_hospital NUMBER(3) NOT NULL,
     nome VARCHAR2(50) NOT NULL,
      CONSTRAINT PK_HOSPITAL PRIMARY KEY(id_hospital)     
 );
@@ -10,9 +10,9 @@ INSERT INTO Hospital(id_hospital, nome)
 
 -- ////////////////////////////////// PESSOA ////////////////////////////////// --
 CREATE TABLE Pessoa(
-    id_pessoa NUMBER (10) NOT NULL,
+    id_pessoa NUMBER (3) NOT NULL,
     nome VARCHAR2(50) NOT NULL,
-    cep CHAR(9) NOT NULL,
+    cep CHAR(8) NOT NULL,
     data_nascimento DATE,
     cpf CHAR(11) UNIQUE NOT NULL,
     salario_mensal DECIMAL(6,2),
@@ -26,22 +26,22 @@ INCREMENT BY 1
 NOCACHE NOCYCLE;
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Gertrudes', 99999-999, TO_DATE('11-02-1949','dd-MM-yyyy'), '33333333333', NULL);
+VALUES(seq_pessoa.nextval, 'Gertrudes', 99999999, TO_DATE('11-02-1949','dd-MM-yyyy'), '33333333333', NULL);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Mauricio', 99998-999, TO_DATE('12-04-2022','dd-MM-yyyy'), '44444444444', 1000.3);
+VALUES(seq_pessoa.nextval, 'Mauricio', 99998999, TO_DATE('12-04-2022','dd-MM-yyyy'), '44444444444', 1000.3);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Larissa', 99988-999, TO_DATE('22-11-1999','dd-MM-yyyy'), '88888888888', 3000);
+VALUES(seq_pessoa.nextval, 'Larissa', 99988999, TO_DATE('22-11-1999','dd-MM-yyyy'), '88888888888', 3000);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Marcos', 99988-999, TO_DATE('22-11-1999','dd-MM-yyyy'), '77777777777', 3001);
+VALUES(seq_pessoa.nextval, 'Marcos', 99988999, TO_DATE('22-11-1999','dd-MM-yyyy'), '77777777777', 3001);
 
 -- ////////////////////////////////// PACIENTE ////////////////////////////////// --
 CREATE TABLE Paciente(
-	id_paciente NUMBER(10) NOT NULL,
-	id_hospital NUMBER(10) NOT NULL,
-	id_pessoa NUMBER(10) NOT NULL,
+	id_paciente NUMBER(3) NOT NULL,
+	id_hospital NUMBER(3) NOT NULL,
+	id_pessoa NUMBER(3) NOT NULL,
 	 CONSTRAINT PK_PACIENTE PRIMARY KEY (id_paciente),
 	 CONSTRAINT FK_PACIENTE_HOSPITAL FOREIGN KEY (id_hospital) REFERENCES Hospital(id_hospital),
 	 CONSTRAINT FK_PACIENTE_PESSOA FOREIGN KEY (id_hospital) REFERENCES Pessoa(id_pessoa)
@@ -57,7 +57,9 @@ CREATE SEQUENCE SEQ_PACIENTE
 ---- INSERT PACIENTE ----
 INSERT INTO Paciente (id_paciente, id_hospital, id_pessoa)
 	VALUES (SEQ_PACIENTE.nextval, 1, 1);
-	
+
+SELECT * FROM PACIENTE;
+SELECT * FROM PESSOA;
 	
 -- ////////////////////////////////// FUNCIONÁRIO ////////////////////////////////// --
 CREATE TABLE Funcionario (
@@ -133,4 +135,11 @@ INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, da
 	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 2, TO_DATE('05-02-1973', 'dd-mm-yyyy'), 'dor de cotovelo', '2');
 
 SELECT * FROM PACIENTE;
+
+
+
+SELECT * FROM PESSOA INNER JOIN PACIENTE ON pessoa.ID_PESSOA = paciente.ID_PESSOA ;
+	
+
+
 

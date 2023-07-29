@@ -35,7 +35,7 @@ public class Paciente extends Pessoa {
 
     @Override
     public void setIdPessoa(Integer idPessoa) {
-        this.idPessoa = super.getIdPessoa();
+        this.idPessoa = idPessoa;
     }
 
     @Override
