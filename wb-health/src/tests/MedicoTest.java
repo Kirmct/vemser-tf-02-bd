@@ -1,9 +1,5 @@
 package tests;
-
 import util.MenuMedico;
-
-
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MedicoTest {

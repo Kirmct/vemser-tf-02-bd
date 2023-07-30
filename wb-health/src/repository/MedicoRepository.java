@@ -1,12 +1,6 @@
 package repository;
-
-import model.Paciente;
 import model.exceptions.BancoDeDadosException;
-
-import model.Hospital;
 import model.Medico;
-import model.exceptions.IdException;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,55 +26,6 @@ public class MedicoRepository implements Repositorio<Integer, Medico> {
             throw new BancoDeDadosException(e.getCause());
         }
     }
-
-//    @Override
-//    public List<Medico> listarTodos() throws BancoDeDadosException {
-//        List<Medico> medicos = new ArrayList<>();
-//        Connection con = null;
-//        try {
-//            con = ConexaoBancoDeDados.getConnection();
-//            Statement st = con.createStatement();
-//
-//            String sql = "SELECT * FROM PESSOA\n" +
-//                    "INNER JOIN MEDICO\n" +
-//                    "ON PESSOA.ID_PESSOA = PACIENTE.ID_PESSOA";
-//
-//            ResultSet res = st.executeQuery(sql);
-//
-//            while (res.next()){
-//                Integer idPessoa = res.getInt("id_pessoa");
-//                String nome = res.getString("nome");
-//                String cep = res.getString("cep");
-//                LocalDate data =   res.getDate("data_nascimento").toLocalDate();
-//                String cpf = res.getString("cpf");
-//                Double salarioMensal = res.getDouble("salario_mensal");
-//                Integer idMedico = res.getInt("id_paciente");
-//                Integer idHospital = res.getInt("id_hospital");
-//                String crm = res.getString("crm");
-//
-//                String dataFormatada = data.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-//
-//                Medico medico = new Medico(nome,cep, dataFormatada, cpf, salarioMensal, idHospital, crm);
-//
-//                medico.setIdPessoa(idPessoa);
-//                medico.setIdMedico(idMedico);
-//
-//                medicos.add(medico);
-//            }
-//
-//        }catch (SQLException e) {
-//            throw new BancoDeDadosException(e.getCause());
-//        } finally {
-//            try {
-//                if (con != null) {
-//                    con.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return medicos;
-//    }
 
     @Override
     public void cadastrar(Medico medico) throws BancoDeDadosException {
