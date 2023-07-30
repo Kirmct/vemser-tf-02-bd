@@ -33,8 +33,8 @@ public class Atendimento {
 
     public Double calcularValorDoAtendimento(Integer tipoDeAtendimento) {
         return switch (tipoDeAtendimento) {
-            case 1 -> 5000.0;
-            case 2 -> 300.0;
+            case 1 -> 200.0;
+            case 2 -> 3000.0;
             case 3 -> 180.0;
             case 4 -> 100.0;
             case 5 -> 10.0;

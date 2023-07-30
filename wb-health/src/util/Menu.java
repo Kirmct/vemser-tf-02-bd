@@ -10,7 +10,7 @@ public class Menu {
         + "\n2 - Seção de Paciente"
         + "\n3 - Seção de Funcionário"
         + "\n4 - Seção de Atendimento"
-        + "\n5 - Seção do Financeiro"
+//        + "\n5 - Seção do Financeiro"
         + "\n0 - Sair" + CoresMenu.RESET);
     }
 
@@ -20,7 +20,7 @@ public class Menu {
             case 2 -> "pacientes";
             case 3 -> "funcionários";
             case 4 -> "atendimentos";
-            case 5 -> "financeiro";
+//            case 5 -> "financeiro";
             default -> throw new IllegalStateException("Valor inexperado: " + opcao);
         };
 
@@ -29,7 +29,7 @@ public class Menu {
             case 2 -> CoresMenu.AZUL_BOLD;
             case 3 -> CoresMenu.ROSA_BOLD;
             case 4 -> CoresMenu.AZUL_BOLD;
-            case 5 -> CoresMenu.VERDE_BOLD;
+//            case 5 -> CoresMenu.VERDE_BOLD;
             default -> throw new IllegalStateException("Valor inexperado: " + opcao);
         };
 

@@ -89,7 +89,7 @@ public class Main {
                     else if (opcao == 5) {
                         switch (selecao) {
                             default -> {
-                                System.out.println("Selecione uma das opções!!");
+                                System.err.println("Selecione uma das opções!!");
                             }
                         }
                     }

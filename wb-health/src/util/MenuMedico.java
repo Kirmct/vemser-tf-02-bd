@@ -1,14 +1,18 @@
 package util;
+import model.Atendimento;
 import model.Medico;
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;
 import model.exceptions.IdException;
+import service.AtendimentoService;
 import service.MedicoService;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuMedico {
     private static final MedicoService medicoService= new MedicoService();
+    private static final AtendimentoService atendimentoService = new AtendimentoService();
     public static void listar(){
         try {
             System.out.println("\n---------- Lista de medicos ----------");
@@ -124,6 +128,13 @@ public class MenuMedico {
             Medico medicoExiste = medicoService.buscarId(id);
             if (medicoExiste.getIdMedico() == null){
                 throw new IdException("Id não existe em nosso banco de dados!");
+            }
+
+            List<Atendimento> atendimentos = atendimentoService.buscarTodos();
+            for (Atendimento atendimento: atendimentos){
+                if (atendimento.getIdMedico() == medicoExiste.getIdMedico()){
+                    throw new IdException("Não podemos remover médicos associados a um atendimento!");
+                }
             }
 
             medicoService.deletarPeloId(id);

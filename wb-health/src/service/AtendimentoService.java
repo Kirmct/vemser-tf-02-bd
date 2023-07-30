@@ -57,4 +57,8 @@ public class AtendimentoService {
     public Atendimento buscarId(Integer id) throws BancoDeDadosException {
         return atendimentoRepository.buscarId(id);
     }
+
+    public List<Atendimento> buscarTodos() throws BancoDeDadosException{
+        return atendimentoRepository.buscarTodos();
+    }
 }

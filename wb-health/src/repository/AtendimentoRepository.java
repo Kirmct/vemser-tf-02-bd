@@ -276,4 +276,8 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
     public Atendimento buscarId(Integer id) throws BancoDeDadosException {
         return this.listarPeloId(id);
     }
+
+    public List<Atendimento> buscarTodos()throws BancoDeDadosException {
+        return this.listarTodos();
+    }
 }
