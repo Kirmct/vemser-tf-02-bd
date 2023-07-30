@@ -1,14 +1,9 @@
 package util;
 import model.Medico;
 import model.exceptions.BancoDeDadosException;
-
 import service.MedicoService;
-
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-
 
 public class MenuMedico {
     private static final MedicoService medicoService= new MedicoService();
