@@ -18,5 +18,6 @@ public interface Repositorio<Key, T> {
     public boolean deletarPeloId(Key id) throws BancoDeDadosException;
 
     public Integer getProximoId(Connection connection, String nextSequence) throws SQLException;
+    public T buscarId(Key id) throws BancoDeDadosException;
 
 }

@@ -2,6 +2,7 @@ package util;
 
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;
+import model.exceptions.IdException;
 import service.PacienteService;
 
 import java.util.InputMismatchException;
@@ -50,7 +51,14 @@ public class MenuPaciente {
         try {
             System.out.println("\n---------- Entre com os dados ----------");
             System.out.print("ID do paciente que deseja buscar: ");
+
+
             Integer id = Integer.parseInt(sc.nextLine());
+            Paciente pacienteExiste = pacienteService.buscarId(id);
+            if (pacienteExiste == null){
+                throw new IdException("Id não existe em nosso banco de dados!");
+            }
+
             pacienteService.listarPeloId(id);
             System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
         }catch (InputMismatchException e){
@@ -68,6 +76,11 @@ public class MenuPaciente {
             System.out.println("\n---------- Entre com os dados ----------");
             System.out.print("ID do paciente que deseja alterar: ");
             Integer id = Integer.parseInt(sc.nextLine());
+
+            Paciente pacienteExiste = pacienteService.buscarId(id);
+            if (pacienteExiste == null){
+                throw new IdException("Id não existe em nosso banco de dados!");
+            }
 
             System.out.print("Novo nome do paciente: ");
             String nome = sc.nextLine();
@@ -106,6 +119,12 @@ public class MenuPaciente {
             System.out.print("ID do paciente que deseja deletar: ");
             Integer id = Integer.parseInt(sc.nextLine());
 
+            Paciente pacienteExiste = pacienteService.buscarId(id);
+
+            if (pacienteExiste == null){
+                throw new IdException("Id não existe em nosso banco de dados!");
+            }
+
             pacienteService.deletarPeloId(id);
 
         }catch (InputMismatchException e){
@@ -113,6 +132,8 @@ public class MenuPaciente {
         }
         catch (RuntimeException e) {
             System.err.println("Ocorreu um erro! " + e.getMessage());
+        } catch (BancoDeDadosException e) {
+            throw new RuntimeException(e);
         }
     }
 

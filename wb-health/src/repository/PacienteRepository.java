@@ -126,7 +126,7 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
         try {
             con = ConexaoBancoDeDados.getConnection();
             String sql = "SELECT * FROM PACIENTE\n" +
-                    "INNER JOIN PESSOA ON PACIENTE.ID_PACIENTE = ? AND PESSOA.ID_PESSOA = PACIENTE.ID_PACIENTE\n";
+                    "INNER JOIN PESSOA ON PACIENTE.ID_PACIENTE = ? AND PESSOA.ID_PESSOA = PACIENTE.ID_PESSOA\n";
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, id);
@@ -170,6 +170,8 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
+
+            Paciente pacienteId = this.listarPeloId(id);
 
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE PESSOA SET \n");
@@ -218,7 +220,7 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
                     }
                 }
 
-                st.setInt(index++, id);
+                st.setInt(index++, pacienteId.getIdPessoa());
 
                 int res = st.executeUpdate();
                 System.out.println("Update: " + res);
@@ -302,6 +304,8 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
         }
     }
 
+
+
     public boolean buscarCpf(Paciente paciente){
         Connection con = null;
         boolean retorno = false;
@@ -334,6 +338,11 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
 
         return retorno;
 
+    }
+
+    @Override
+    public Paciente buscarId(Integer id) throws BancoDeDadosException {
+        return this.listarPeloId(id);
     }
 
 }

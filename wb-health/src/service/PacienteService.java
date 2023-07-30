@@ -76,7 +76,7 @@ public class PacienteService {
 
     }
 
-//    public Paciente buscarId(Hospital hospital, Integer id){
-//        return pacienteRepository.buscarId(hospital.getPacientes(), id);
-//    }
+    public Paciente buscarId(Integer id) throws BancoDeDadosException {
+        return pacienteRepository.buscarId(id);
+    }
 }
