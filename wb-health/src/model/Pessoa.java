@@ -20,7 +20,11 @@ public abstract class Pessoa {
     public Pessoa(String nome, String cep, String dataNascimento, String cpf, Double salarioMensal) {
         this.nome = nome;
         this.cep = cep;
-        this.dataNascimento = LocalDate.parse(dataNascimento, fmt);
+        if (dataNascimento == ""){
+            this.dataNascimento = null;
+        }else {
+            this.dataNascimento = LocalDate.parse(dataNascimento, fmt);
+        }
         this.cpf = cpf;
         this.salarioMensal = salarioMensal;
     }
