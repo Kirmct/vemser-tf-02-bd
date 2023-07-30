@@ -78,7 +78,7 @@ public class MenuPaciente {
             Integer id = Integer.parseInt(sc.nextLine());
 
             Paciente pacienteExiste = pacienteService.buscarId(id);
-            if (pacienteExiste == null){
+            if (pacienteExiste.getIdPaciente() == null){
                 throw new IdException("Id não existe em nosso banco de dados!");
             }
 
@@ -121,7 +121,7 @@ public class MenuPaciente {
 
             Paciente pacienteExiste = pacienteService.buscarId(id);
 
-            if (pacienteExiste == null){
+            if (pacienteExiste.getIdPaciente() == null){
                 throw new IdException("Id não existe em nosso banco de dados!");
             }
 
