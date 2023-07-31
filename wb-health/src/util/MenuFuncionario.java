@@ -6,6 +6,8 @@ import model.exceptions.BancoDeDadosException;
 import model.exceptions.IdException;
 import service.FuncionarioService;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -74,6 +76,7 @@ public class MenuFuncionario {
             throw new RuntimeException(e);
         }
     }
+    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void alterarPeloId(Scanner sc){
         try {
@@ -88,22 +91,41 @@ public class MenuFuncionario {
 
             System.out.print("Novo nome do funcionario: ");
             String nome = sc.nextLine();
+            if (nome.equals("")){
+                nome = funcionarioExiste.getNome();
+            }
 
             System.out.print("Novo CEP do funcionario: ");
             String cep = sc.nextLine();
+            if (cep.equals("")){
+                cep = funcionarioExiste.getCep();
+            }
 
             System.out.print("Novo data nascimento do funcionario(dd-MM-yyyy): ");
             String dataNascimento = sc.nextLine();
+            if (dataNascimento.equals("")){
+                LocalDate dataInstanciada = funcionarioExiste.getDataNascimento();
+                dataNascimento = dataInstanciada.format(fmt);
+            }
 
             System.out.print("CPF do funcionario: ");
             String cpf = sc.nextLine();
+            if (cpf.equals("")){
+                cpf = funcionarioExiste.getCpf();
+            }
 
             System.out.print("Novo salário: ");
-            Double salario = Double.parseDouble(sc.nextLine());
+            String salario = sc.nextLine();
+            Double novoSalario;
+            if (salario.equals("")){
+                novoSalario= funcionarioExiste.getSalarioMensal();
+            }else{
+                novoSalario = Double.parseDouble(salario);
+            }
 
 
             Funcionario funcionario;
-            funcionario = new Funcionario(nome, cep, dataNascimento, cpf, salario, 1);
+            funcionario = new Funcionario(nome, cep, dataNascimento, cpf, novoSalario, 1);
 
             funcionarioService.alterarPeloId(id, funcionario);
         }catch (InputMismatchException e){

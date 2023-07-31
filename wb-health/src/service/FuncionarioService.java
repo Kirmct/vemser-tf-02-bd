@@ -14,7 +14,7 @@ public class FuncionarioService {
 
     public void inserir(Funcionario funcionario) {
         try {
-            String cpf = funcionario.getCpf().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos do CPF
+            String cpf = funcionario.getCpf().replaceAll("[^0-9]", "");
             if (cpf.length() != 11) {
                 throw new Exception("CPF Invalido!");
             }
@@ -60,7 +60,7 @@ public class FuncionarioService {
         try {
             boolean consegueEditar = funcionarioRepository.alterarPeloId(id, funcionarioAtualizado);
             if (consegueEditar){
-
+                System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
             }
         }catch (BancoDeDadosException e) {
             e.printStackTrace();

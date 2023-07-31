@@ -15,7 +15,7 @@ CREATE TABLE Pessoa(
     cep CHAR(8) NOT NULL,
     data_nascimento DATE,
     cpf CHAR(11) UNIQUE NOT NULL,
-    salario_mensal DECIMAL(6,2),
+    salario_mensal DECIMAL(7,2),
      CONSTRAINT pk_Pessoa PRIMARY KEY (id_pessoa)
 );
 
@@ -26,16 +26,16 @@ INCREMENT BY 1
 NOCACHE NOCYCLE;
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Gertrudes', 99999999, TO_DATE('11-02-1949','dd-MM-yyyy'), '33333333333', NULL);
+VALUES(seq_pessoa.nextval, 'Gertrudes', 99999999, TO_DATE('11-02-1949','dd-MM-yyyy'), '33333333333', 0.00);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Mauricio', 99998999, TO_DATE('12-04-2022','dd-MM-yyyy'), '44444444444', 1000.3);
+VALUES(seq_pessoa.nextval, 'Mauricio', 99998999, TO_DATE('12-04-2022','dd-MM-yyyy'), '44444444444', 1000.30);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Larissa', 99988999, TO_DATE('22-11-1999','dd-MM-yyyy'), '88888888888', 3000);
+VALUES(seq_pessoa.nextval, 'Larissa', 99988999, TO_DATE('22-11-1999','dd-MM-yyyy'), '88888888888', 3000.00);
 
 INSERT INTO Pessoa(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)
-VALUES(seq_pessoa.nextval, 'Marcos', 99988999, TO_DATE('22-11-1999','dd-MM-yyyy'), '77777777777', 3001);
+VALUES(seq_pessoa.nextval, 'Marcos', 99988999, TO_DATE('22-11-1999','dd-MM-yyyy'), '77777777777', 300.10);
 
 -- ////////////////////////////////// PACIENTE ////////////////////////////////// --
 CREATE TABLE Paciente(
@@ -114,7 +114,8 @@ CREATE TABLE Atendimento(
     id_medico NUMBER(10) NOT NULL,
     data_nascimento DATE NOT NULL,
     laudo VARCHAR2(100) NOT NULL,
-    tipo_de_atendimento CHAR(1) NOT NULL,
+    tipo_de_atendimento NUMBER(1) NOT NULL,
+    valor_atendimento NUMBER(7,2) NOT NULL,
      CONSTRAINT PK_ATENDIMENTO PRIMARY KEY(id_atendimento),
      CONSTRAINT FK_ATENDIMENTO_HOSPITAL FOREIGN KEY(id_hospital) REFERENCES HOSPITAL(id_hospital),
      CONSTRAINT FK_ATENDIMENTO_PACIENTE FOREIGN KEY(id_paciente) REFERENCES PACIENTE(id_paciente),
@@ -128,24 +129,12 @@ INCREMENT BY 1
 NOCACHE
 NOCYCLE;
 
-INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento)
-	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 1, TO_DATE('27-04-1961', 'dd-mm-yyyy'), 'dor na consciência', '1');
+INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento, valor_atendimento)
+	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 1, TO_DATE('27-04-1961', 'dd-mm-yyyy'), 'dor na consciência', 1, 200.00);
 
 INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento)
-	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 2, TO_DATE('05-02-1973', 'dd-mm-yyyy'), 'dor de cotovelo', '2');
+	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 2, TO_DATE('05-02-1973', 'dd-mm-yyyy'), 'dor de cotovelo', 2, 3000.00);
 
-SELECT * FROM PACIENTE;
-
-
-
-SELECT * FROM PESSOA INNER JOIN PACIENTE ON pessoa.ID_PESSOA = paciente.ID_PESSOA ;
-	
-
-SELECT * FROM PACIENTE WHERE  PACIENTE.ID_PESSOA = 1;
-
-SELECT * FROM PESSOA, PACIENTE WHERE PACIENTE.ID_PESSOA = 1 AND PESSOA.ID_PESSOA = 1;
-
-SELECT * FROM PESSOA, PACIENTE WHERE PACIENTE.ID_PESSOA = PESSOA.ID_PESSOA AND PACIENTE.ID_PESSOA = 2;
 
 	
 

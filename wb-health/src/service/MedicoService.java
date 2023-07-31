@@ -20,17 +20,17 @@ public class MedicoService {
     }
     public void inserir(Medico medico) {
         try {
-            String cpf = medico.getCpf().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos do CPF
+            String cpf = medico.getCpf().replaceAll("[^0-9]", "");
             if (cpf.length() != 11) {
                 throw new Exception("CPF Invalido!");
             }
             medico.setCpf(cpf);
 
-            String cep = medico.getCep().replaceAll("[^0-9]", ""); // Remove caracteres não numéricos do CEP
+            String cep = medico.getCep().replaceAll("[^0-9]", "");
             if (cep.length() != 8) {
                 throw new Exception("CEP inválido! Deve conter exatamente 8 dígitos numéricos.");
             }
-            medico.setCep(cep); // Atualiza o CEP no objeto Paciente com o valor formatado
+            medico.setCep(cep);
             medicoRepository.cadastrar(medico);
             System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
 
@@ -59,7 +59,7 @@ public class MedicoService {
         try {
             boolean consegueEditar = medicoRepository.alterarPeloId(id, medicoAtualizado);
             if (consegueEditar) {
-
+                System.out.println(CoresMenu.VERDE_BOLD + "\nOperação realizada com sucesso!" + CoresMenu.RESET);
             }
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
