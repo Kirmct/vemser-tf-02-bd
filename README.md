@@ -1,6 +1,6 @@
 # WB Health - Sistema Hospitalar em Java (Equipe-08)
 
-WB Health é um  projeto desenvolvido em Java pelos colaboradores Kirmct de Abreu, Nicoly Lana, Renan Bilhan e Yuri Queiroz. O sistema tem o objetivo de gerenciar um hospital, permitindo realizar operações de CRUD (Create, Read, Update, Delete) para médicos, pacientes, funcionários e atendimentos. Além disso, o sistema também possui uma funcionalidade para visualizar os gastos e ganhos do hospital. O projeto foi um desafio proposto como teste do conhecimento obtido ao final do módulo-01 de Java do programa Vem Ser, da empresa DBC Company.
+WB Health é um  projeto desenvolvido em Java pelos colaboradores Kirmct de Abreu, Nicoly Lana, Renan Bilhan e Yuri Queiroz. O sistema tem o objetivo de gerenciar um hospital, permitindo realizar operações de CRUD (Create, Read, Update, Delete) para médicos, pacientes, funcionários e atendimentos. O projeto foi um desafio proposto como teste do conhecimento obtido ao final do módulo-02 de Banco de Dados e JDBC do programa Vem Ser, da empresa DBC Company.
 ## Funcionalidades
 
 O sistema WB Health oferece as seguintes funcionalidades:
@@ -32,9 +32,6 @@ O sistema WB Health oferece as seguintes funcionalidades:
    - Buscar um atendimento por ID
    - Atualizar informações de um atendimento existente (informando o médico e o paciente envolvidos)
    - Excluir atendimento
-
-5. Entidade Financeira:
-   - Visualizar os gastos e ganhos.
 
 ## Como executar o projeto
 
