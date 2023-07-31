@@ -1,6 +1,9 @@
 package model;
 
+import java.time.format.DateTimeFormatter;
+
 public class Paciente extends Pessoa {
+    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private Integer idPaciente;
     private Integer idHospital;
     private Integer idPessoa;
@@ -47,6 +50,7 @@ public class Paciente extends Pessoa {
         sb.append("Id: ").append(this.getIdPaciente());
         sb.append("\nPaciente: ").append(this.getNome());
         sb.append("\nCPF: ").append(this.getCpf());
+        sb.append("\nData Nascimento: ").append(this.getDataNascimento().format(fmt));
         return sb.toString();
     }
 

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Hospital {
     private Integer idHospital;
     private String nome;

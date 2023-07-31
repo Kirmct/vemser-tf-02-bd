@@ -1,8 +1,6 @@
 package service;
 
 import model.Atendimento;
-import model.Hospital;
-import model.Paciente;
 import model.exceptions.BancoDeDadosException;
 import repository.AtendimentoRepository;
 import util.CoresMenu;
@@ -11,7 +9,7 @@ import java.util.List;
 
 
 public class AtendimentoService {
-    private AtendimentoRepository atendimentoRepository = new AtendimentoRepository();
+    private final AtendimentoRepository atendimentoRepository = new AtendimentoRepository();
 
     public void inserir( Atendimento atendimento) throws BancoDeDadosException {
         atendimentoRepository.cadastrar(atendimento);

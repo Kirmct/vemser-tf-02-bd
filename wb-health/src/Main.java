@@ -1,8 +1,6 @@
-import model.*;
 import model.exceptions.BancoDeDadosException;
 import util.*;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {

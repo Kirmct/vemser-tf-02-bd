@@ -41,11 +41,6 @@ public class Medico extends Pessoa implements Pagamento{
     }
 
     @Override
-    public Double calcularSalarioAnual() {
-        return calcularSalarioMensal() * 12;
-    }
-
-    @Override
     public Integer getIdPessoa() {
         return idPessoa;
     }

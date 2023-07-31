@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 
 public class MenuFuncionario {
-    private static FuncionarioService funcionarioService = new FuncionarioService();
+    private static final FuncionarioService funcionarioService = new FuncionarioService();
 
     public static void listar(){
         try {

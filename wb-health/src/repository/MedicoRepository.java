@@ -1,11 +1,9 @@
 package repository;
 
-import model.Paciente;
 import model.exceptions.BancoDeDadosException;
 
-import model.Hospital;
 import model.Medico;
-import model.exceptions.IdException;
+import util.CoresMenu;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -62,7 +60,6 @@ public class MedicoRepository implements Repositorio<Integer, Medico> {
 
 
             int pessoasInseridas = stPesssoa.executeUpdate();
-            System.out.println("Pessoas inseridas: " + pessoasInseridas);
 
             if (pessoasInseridas == 0) throw new SQLException("Ocorreu um erro ao inserir!");
 
@@ -80,13 +77,13 @@ public class MedicoRepository implements Repositorio<Integer, Medico> {
             stMedico.setString(4, medico.getCrm());
 
             int res = stMedico.executeUpdate();
-            System.out.println("Medicos inseridos:" + res);
+
 
         }catch (BancoDeDadosException e) {
-            System.out.println("Erro ao acessar o banco de dados:");
+            System.err.println("Erro ao acessar o banco de dados:");
             e.printStackTrace();
         } catch (Exception e) {
-            System.out.println("Erro inesperado:");
+            System.err.println("Erro inesperado:");
             e.printStackTrace();
         } finally {
             try {
@@ -249,7 +246,6 @@ public class MedicoRepository implements Repositorio<Integer, Medico> {
                 st.setInt(index++, medicoId.getIdPessoa());
 
                 int res = st.executeUpdate();
-                System.out.println("Update: " + res);
 
 
 
@@ -266,7 +262,7 @@ public class MedicoRepository implements Repositorio<Integer, Medico> {
 
                 return res2 > 0;
             } else {
-                System.out.println("Nenhum campo para atualizar.");
+                System.err.println("Nenhum campo para atualizar.");
                 return false;
             }
         } catch (SQLException e) {

@@ -1,8 +1,6 @@
 package service;
 
-import model.Hospital;
 import model.Medico;
-import model.Paciente;
 import model.exceptions.BancoDeDadosException;
 import repository.MedicoRepository;
 import util.CoresMenu;

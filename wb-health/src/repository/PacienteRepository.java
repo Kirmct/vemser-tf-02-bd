@@ -2,6 +2,7 @@ package repository;
 
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;
+import util.CoresMenu;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -35,7 +36,6 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
 
 
             int pessoasInseridas = stPesssoa.executeUpdate();
-            System.out.println("Pessoas inseridas: " + pessoasInseridas);
 
             if (pessoasInseridas == 0) throw new SQLException("Ocorreu um erro ao inserir!");
 
@@ -52,13 +52,13 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
             stPaciente.setInt(3, paciente.getIdPessoa());
 
             int res = stPaciente.executeUpdate();
-            System.out.println("Pacientes inseridos:" + res);
+
 
         }catch (BancoDeDadosException e) {
-            System.out.println("Erro ao acessar o banco de dados:");
+            System.err.println("Erro ao acessar o banco de dados:");
             e.printStackTrace();
         } catch (Exception e) {
-            System.out.println("Erro inesperado:");
+            System.err.println("Erro inesperado:");
             e.printStackTrace();
         } finally {
             try {
@@ -223,11 +223,10 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
                 st.setInt(index++, pacienteId.getIdPessoa());
 
                 int res = st.executeUpdate();
-                System.out.println("Update: " + res);
 
                 return res > 0;
             } else {
-                System.out.println("Nenhum campo para atualizar.");
+                System.err.println("Nenhum campo para atualizar.");
                 return false;
             }
         } catch (SQLException e) {
@@ -290,7 +289,6 @@ public class PacienteRepository implements Repositorio<Integer, Paciente> {
     public Integer getProximoId(Connection connection, String nextSequence) throws SQLException {
         try {
             String sql = "SELECT " + nextSequence + " mysequence from DUAL";
-            System.out.println("SEQUENCE " + sql);
             Statement stmt = connection.createStatement();
             ResultSet res = stmt.executeQuery(sql);
 

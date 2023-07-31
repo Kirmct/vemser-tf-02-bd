@@ -7,6 +7,8 @@ import model.exceptions.IdException;
 import service.AtendimentoService;
 import service.PacienteService;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +16,7 @@ import java.util.Scanner;
 public class MenuPaciente {
     private static final PacienteService pacienteService = new PacienteService();
     private static final AtendimentoService atendimentoService = new AtendimentoService();
+    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void listar(){
         try {
@@ -88,22 +91,31 @@ public class MenuPaciente {
 
             System.out.print("Novo nome do paciente: ");
             String nome = sc.nextLine();
+            if (nome.equals("")){
+                nome = pacienteExiste.getNome();
+            }
 
             System.out.print("Novo CEP do paciente: ");
             String cep = sc.nextLine();
+            if (cep.equals("")){
+                cep = pacienteExiste.getCep();
+            }
 
             System.out.print("Novo data nascimento do paciente(dd-MM-yyyy): ");
             String dataNascimento = sc.nextLine();
+            if (dataNascimento.equals("")){
+                LocalDate dataInstanciada = pacienteExiste.getDataNascimento();
+                dataNascimento = dataInstanciada.format(fmt);
+            }
 
             System.out.print("CPF do paciente: ");
             String cpf = sc.nextLine();
-
-            System.out.print("Novo salário: ");
-            Double salario = Double.parseDouble(sc.nextLine());
-
+            if (cpf.equals("")){
+                cpf = pacienteExiste.getCpf();
+            }
 
             Paciente paciente;
-            paciente = new Paciente(nome, cep, dataNascimento, cpf, salario, 1);
+            paciente = new Paciente(nome, cep, dataNascimento, cpf, 0.00, 1);
 
             pacienteService.alterarPeloId(id, paciente);
         }catch (InputMismatchException e){

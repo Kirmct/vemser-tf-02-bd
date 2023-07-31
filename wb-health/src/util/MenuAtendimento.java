@@ -1,7 +1,6 @@
 package util;
 
 import model.Atendimento;
-import model.Hospital;
 import model.Medico;
 import model.Paciente;
 import model.exceptions.BancoDeDadosException;

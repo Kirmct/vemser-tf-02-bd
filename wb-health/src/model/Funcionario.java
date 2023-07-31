@@ -68,9 +68,5 @@ public class Funcionario extends Pessoa implements Pagamento{
         return getSalarioMensal() - getSalarioMensal() * taxaInss;
     }
 
-    @Override
-    public Double calcularSalarioAnual() {
-        return calcularSalarioMensal() * 12;
-    }
 
 }

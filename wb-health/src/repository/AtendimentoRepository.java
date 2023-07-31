@@ -1,10 +1,8 @@
 package repository;
 
 import model.Atendimento;
-import model.Paciente;
 import model.exceptions.BancoDeDadosException;
-import model.Hospital;
-import model.exceptions.IdException;
+import util.CoresMenu;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -41,15 +39,15 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
 
 
             int atendimentosInseridos = stAtendimento.executeUpdate();
-            System.out.println("Atendimentos inseridas: " + atendimentosInseridos);
+
 
             if (atendimentosInseridos == 0) throw new SQLException("Ocorreu um erro ao inserir!");
 
         }catch (BancoDeDadosException e) {
-            System.out.println("Erro ao acessar o banco de dados:");
+            System.err.println("Erro ao acessar o banco de dados:");
             e.printStackTrace();
         } catch (Exception e) {
-            System.out.println("Erro inesperado:");
+            System.err.println("Erro inesperado:");
             e.printStackTrace();
         } finally {
             try {
@@ -197,11 +195,10 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
                 st.setInt(index++, atendimentoId.getIdAtendimento());
 
                 int res = st.executeUpdate();
-                System.out.println("Update: " + res);
 
                 return res > 0;
             } else {
-                System.out.println("Nenhum campo para atualizar.");
+                System.err.println("Nenhum campo para atualizar.");
                 return false;
             }
         } catch (SQLException e) {
@@ -258,7 +255,6 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
     public Integer getProximoId(Connection connection, String nextSequence) throws SQLException {
         try {
             String sql = "SELECT " + nextSequence + " mysequence from DUAL";
-            System.out.println("SEQUENCE " + sql);
             Statement stmt = connection.createStatement();
             ResultSet res = stmt.executeQuery(sql);
 

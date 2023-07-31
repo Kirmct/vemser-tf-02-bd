@@ -3,6 +3,7 @@ package repository;
 import model.Funcionario;
 
 import model.exceptions.BancoDeDadosException;
+import util.CoresMenu;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -20,7 +21,6 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
 
             Integer proximoPessoaId = this.getProximoId(con, "seq_pessoa.nextval");
             funcionario.setIdPessoa(proximoPessoaId);
-            System.out.println(proximoPessoaId);
 
             String sqlPessoa = "INSERT INTO Pessoa\n" +
                     "(id_pessoa, nome, cep, data_nascimento, cpf, salario_mensal)\n" +
@@ -37,7 +37,6 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
 
 
             int pessoasInseridas = stPesssoa.executeUpdate();
-            System.out.println("Pessoas inseridas: " + pessoasInseridas);
 
             if (pessoasInseridas == 0) throw new SQLException("Ocorreu um erro ao inserir!");
 
@@ -54,13 +53,12 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
             stFuncionario.setInt(3, funcionario.getIdPessoa());
 
             int res = stFuncionario.executeUpdate();
-            System.out.println("Funcionarios inseridos:" + res);
 
         }catch (BancoDeDadosException e) {
-            System.out.println("Erro ao acessar o banco de dados:");
+            System.err.println("Erro ao acessar o banco de dados:");
             e.printStackTrace();
         } catch (Exception e) {
-            System.out.println("Erro inesperado:");
+            System.err.println("Erro inesperado:");
             e.printStackTrace();
         } finally {
             try {
@@ -230,11 +228,10 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
                 st.setInt(index++, funcionarioId.getIdPessoa());
 
                 int res = st.executeUpdate();
-                System.out.println("Update: " + res);
 
                 return res > 0;
             } else {
-                System.out.println("Nenhum campo para atualizar.");
+                System.err.println("Nenhum campo para atualizar.");
                 return false;
             }
         } catch (SQLException e) {
@@ -293,7 +290,6 @@ public class FuncionarioRepository implements Repositorio<Integer, Funcionario> 
     public Integer getProximoId(Connection connection, String nextSequence) throws SQLException {
         try {
             String sql = "SELECT " + nextSequence + " mysequence from DUAL";
-            System.out.println("SEQUENCE " + sql);
             Statement stmt = connection.createStatement();
             ResultSet res = stmt.executeQuery(sql);
 
