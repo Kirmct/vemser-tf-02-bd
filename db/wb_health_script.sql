@@ -58,8 +58,6 @@ CREATE SEQUENCE SEQ_PACIENTE
 INSERT INTO Paciente (id_paciente, id_hospital, id_pessoa)
 	VALUES (SEQ_PACIENTE.nextval, 1, 1);
 
-SELECT * FROM PACIENTE;
-SELECT * FROM PESSOA;
 	
 -- ////////////////////////////////// FUNCIONÁRIO ////////////////////////////////// --
 CREATE TABLE Funcionario (
@@ -132,7 +130,7 @@ NOCYCLE;
 INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento, valor_atendimento)
 	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 1, TO_DATE('27-04-1961', 'dd-mm-yyyy'), 'dor na consciência', 1, 200.00);
 
-INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento)
+INSERT INTO Atendimento (id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento, valor_atendimento)
 	VALUES(SEQ_ATENDIMENTO.nextval, 1, 1, 2, TO_DATE('05-02-1973', 'dd-mm-yyyy'), 'dor de cotovelo', 2, 3000.00);
 
 
