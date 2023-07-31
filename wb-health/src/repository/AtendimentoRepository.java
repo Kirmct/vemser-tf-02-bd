@@ -23,7 +23,7 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
             atendimento.setIdAtendimento(proximoAtendimentoId);
 
             String sqlAtendimento = "INSERT INTO Atendimento\n" +
-                    "(id_atendimento, id_hospital, id_paciente, id_medico, data_atendimento, laudo, tipo_de_atendimento, valor_atendimento)\n" +
+                    "(id_atendimento, id_hospital, id_paciente, id_medico, data_nascimento, laudo, tipo_de_atendimento, valor_atendimento)\n" +
                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?)\n";
 
             PreparedStatement stAtendimento = con.prepareStatement(sqlAtendimento);
@@ -77,7 +77,7 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
                 Integer idHospital = res.getInt("id_hospital");
                 Integer idPaciente = res.getInt("id_paciente");
                 Integer idMedico = res.getInt("id_medico");
-                LocalDate dataAtendimento =   res.getDate("data_atendimento").toLocalDate();
+                LocalDate dataAtendimento =   res.getDate("data_nascimento").toLocalDate();
                 String laudo = res.getString("laudo");
                 Integer tipoDeAtendimento = res.getInt("tipo_de_atendimento");
                 Double valorAtendimento = res.getDouble("valor_atendimento");
@@ -123,7 +123,7 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
                 Integer idHospital = res.getInt("id_hospital");
                 Integer idPaciente = res.getInt("id_paciente");
                 Integer idMedico = res.getInt("id_medico");
-                LocalDate dataAtendimento =   res.getDate("data_atendimento").toLocalDate();
+                LocalDate dataAtendimento =   res.getDate("data_nascimento").toLocalDate();
                 String laudo = res.getString("laudo");
                 Integer tipoDeAtendimento = res.getInt("tipo_de_atendimento");
                 Double valorAtendimento = res.getDouble("valor_atendimento");
@@ -163,7 +163,7 @@ public class AtendimentoRepository implements Repositorio<Integer, Atendimento> 
             List<String> camposAtualizados = new ArrayList<>();
             if (atendimento != null) {
                 if (atendimento.getDataAtendimento() != null) {
-                    camposAtualizados.add("data_atendimento = ?");
+                    camposAtualizados.add("data_nascimento = ?");
                 }
                 if (atendimento.getLaudo() != null) {
                     camposAtualizados.add("laudo = ?");
