@@ -5,6 +5,9 @@ import model.exceptions.BancoDeDadosException;
 import model.exceptions.IdException;
 import service.AtendimentoService;
 import service.MedicoService;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -22,6 +25,7 @@ public class MenuMedico {
         }
     }
 
+    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static void inserir(Scanner sc) {
         try {
             Medico medico;
@@ -88,24 +92,46 @@ public class MenuMedico {
             }
             System.out.print("Novo nome do medico: ");
             String nome = sc.nextLine();
+            if (nome.equals("")){
+                nome = medicoExiste.getNome();
+            }
 
             System.out.print("Novo CEP do medico: ");
             String cep = sc.nextLine();
+            if (cep.equals("")){
+                cep = medicoExiste.getCep();
+            }
 
             System.out.print("Novo data nascimento do medico(dd-MM-yyyy): ");
             String dataNascimento = sc.nextLine();
+            if (dataNascimento.equals("")){
+                LocalDate dataInstanciada = medicoExiste.getDataNascimento();
+                dataNascimento = dataInstanciada.format(fmt);
+            }
 
             System.out.print("CPF do medico: ");
             String cpf = sc.nextLine();
+            if (cpf.equals("")){
+                cpf = medicoExiste.getCpf();
+            }
 
             System.out.print("Novo salário: ");
-            Double salario = Double.parseDouble(sc.nextLine());
+            String salario = sc.nextLine();
+            Double novoSalario;
+            if (salario.equals("")){
+                novoSalario= medicoExiste.getSalarioMensal();
+            }else{
+                novoSalario = Double.parseDouble(salario);
+            }
 
             System.out.print("Novo crm: ");
             String crm = sc.nextLine();
+            if (crm.equals("")){
+                crm=medicoExiste.getCrm();
+            }
 
             Medico medico;
-            medico = new Medico(nome, cep, dataNascimento, cpf, salario, 1, crm);
+            medico = new Medico(nome, cep, dataNascimento, cpf, novoSalario, 1, crm);
 
             medicoService.alterarPeloId(id, medico);
         }catch (InputMismatchException e){
@@ -135,9 +161,7 @@ public class MenuMedico {
                     throw new IdException("Não podemos remover médicos associados a um atendimento!");
                 }
             }
-
             medicoService.deletarPeloId(id);
-
         }catch (InputMismatchException e){
             System.err.println("Input Inválido! ");
         }

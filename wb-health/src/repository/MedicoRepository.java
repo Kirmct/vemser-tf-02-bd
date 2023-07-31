@@ -1,10 +1,6 @@
 package repository;
-
 import model.exceptions.BancoDeDadosException;
-
 import model.Medico;
-import util.CoresMenu;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
